@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet, View, FlatList } from 'react-native';
+import ResultDetail from './ResultDetail';
 
 interface IProps {
     title: string;
@@ -12,7 +13,7 @@ const ResultsList = ({ title, results }: IProps) => {
         <View>
             <Text style={styles.title}>{title}</Text>
             <FlatList keyExtractor={(result:any) => result.id} horizontal={true} data={results} renderItem={({item})=>{
-                return <Text>{item.name}</Text>
+                return <ResultDetail result={item}/>
             }}/>
         </View>
     );
