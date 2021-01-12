@@ -4,15 +4,23 @@ import { Feather } from '@expo/vector-icons';
 
 interface IProps {
     term: string;
-    onTermChange: (newTerm:string) => void;
+    onTermChange: (newTerm:string) => void ;
+    onTermSubmit: () => void ;
 }
 
-const SearchBar = ({ term, onTermChange }: IProps) => {
+const SearchBar = ({ term, onTermChange, onTermSubmit }: IProps) => {
 
     return (
         <View style={styles.backgroundStyle}>
             <Feather name="search" style={styles.iconStyle} />
-            <TextInput autoCapitalize="none" autoCorrect={false} style={styles.inputStyle} placeholder="Search" value={term} onChangeText={(newTerm:string)=>onTermChange(newTerm)}/>
+            <TextInput 
+                autoCapitalize="none" 
+                autoCorrect={false} 
+                style={styles.inputStyle} 
+                placeholder="Search" 
+                value={term} 
+                onChangeText={onTermChange}
+                onEndEditing={onTermSubmit}/>
         </View>
     );
 
