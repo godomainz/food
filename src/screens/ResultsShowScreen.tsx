@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, FlatList, Image } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
 import yelp from '../api/yelp';
 
@@ -8,27 +8,39 @@ interface Props {
 }
 
 const ResultsShowScreen = ({ navigation }: Props) => {
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState<any | null>(null);
     const id = navigation.getParam('id');
-    console.log(result);
 
     const getResult = async (id:string) => {
         const response = await yelp.get(`/${id}`);
         setResult(response.data);
     }
-    
+
     useEffect(() =>{
         getResult(id);
-    }, [])
+    }, []);
+
+    if (!result){
+        return null;
+    }
 
     return (
         <View>
-            <Text>Hello from ResultsShowScreen</Text>
+            <Text>{result != null ? result.name : null}</Text>
+            <FlatList 
+                keyExtractor={photo => photo} data={result.photos} 
+                renderItem={({item})=><Image style={styles.image} source={{ uri: item }}/>} 
+                />
         </View>
     );
 
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    image: {
+        height: 200,
+        width: 300,
+    }
+});
 
 export default ResultsShowScreen;
