@@ -6,7 +6,7 @@ import ResultsList from '../components/ResultsList';
 
 const SearchScreen = () => {
     const [term, setTerm] = useState<string>('');
-    const { searchApi, results, errorMessage } = useResults();
+    const [ searchApi, results, errorMessage ] = useResults();
 
     const filterResultsByPrice = (price:string) => {
         return results.filter( (result:any) => {
