@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
-import { NavigationScreenProp } from 'react-navigation';
+import { NavigationScreenProp, withNavigation } from 'react-navigation';
 import ResultDetail from './ResultDetail';
 
 interface IProps {
     title: string;
     results: any;
-    navigation: NavigationScreenProp<any,any>
+    navigation?: NavigationScreenProp<any,any> | any ;
 }
 
 const ResultsList = ({ title, results, navigation }: IProps) => {
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ResultsList;
+export default withNavigation(ResultsList);
