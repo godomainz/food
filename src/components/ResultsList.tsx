@@ -20,7 +20,7 @@ const ResultsList = ({ title, results, navigation }: IProps) => {
                 keyExtractor={(result:any) => result.id} 
                 data={results} 
                 renderItem={({item})=>{
-                return (<TouchableOpacity onPress={()=>navigation.navigate('ResulstShow')}><ResultDetail result={item}/></TouchableOpacity>)
+                return (<TouchableOpacity onPress={()=>navigation.navigate('ResulstShow', {id: item.id})}><ResultDetail result={item}/></TouchableOpacity>)
             }}/>
         </View>
     );
