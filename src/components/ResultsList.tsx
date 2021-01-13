@@ -12,7 +12,12 @@ const ResultsList = ({ title, results }: IProps) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
-            <FlatList keyExtractor={(result:any) => result.id} horizontal={true} data={results} renderItem={({item})=>{
+            <FlatList 
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={(result:any) => result.id} 
+                data={results} 
+                renderItem={({item})=>{
                 return <ResultDetail result={item}/>
             }}/>
         </View>
