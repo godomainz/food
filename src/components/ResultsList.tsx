@@ -10,7 +10,7 @@ interface IProps {
 const ResultsList = ({ title, results }: IProps) => {
 
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
             <FlatList keyExtractor={(result:any) => result.id} horizontal={true} data={results} renderItem={({item})=>{
                 return <ResultDetail result={item}/>
@@ -23,7 +23,12 @@ const ResultsList = ({ title, results }: IProps) => {
 const styles = StyleSheet.create({
     title: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginLeft: 15,
+        marginBottom: 5
+    },
+    container: {
+        marginBottom: 10
     }
 });
 
