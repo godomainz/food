@@ -1,13 +1,15 @@
 import React from 'react';
-import { Text, StyleSheet, View, FlatList } from 'react-native';
+import { Text, StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
+import { NavigationScreenProp } from 'react-navigation';
 import ResultDetail from './ResultDetail';
 
 interface IProps {
     title: string;
     results: any;
+    navigation: NavigationScreenProp<any,any>
 }
 
-const ResultsList = ({ title, results }: IProps) => {
+const ResultsList = ({ title, results, navigation }: IProps) => {
 
     return (
         <View style={styles.container}>
@@ -18,7 +20,7 @@ const ResultsList = ({ title, results }: IProps) => {
                 keyExtractor={(result:any) => result.id} 
                 data={results} 
                 renderItem={({item})=>{
-                return <ResultDetail result={item}/>
+                return (<TouchableOpacity onPress={()=>navigation.navigate('ResulstShow')}><ResultDetail result={item}/></TouchableOpacity>)
             }}/>
         </View>
     );
